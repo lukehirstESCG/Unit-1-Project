@@ -5,10 +5,8 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     Rigidbody2D player;
-    public float speed;
     public Animator anim;
     bool grounded;
-    public GameObject wine;
     HelperScript helper;
 
     void Start()
@@ -21,6 +19,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        helper.DoRayCollisionCheck();
         if (Input.GetKey("right"))
         {
             player.velocity = new Vector2(5, 0);
@@ -31,8 +30,17 @@ public class Player : MonoBehaviour
             player.velocity = new Vector2(-5, 0);
             helper.FlipObject(true);
         }
-
-        grounded = true;
+        // Tells the player to jump if on the ground
+        if (Input.GetKeyDown("space") && grounded)
+        {
+            grounded = false;
+            player.velocity = new Vector3(player.velocity.x, 10, 0);
+        }
+        else
+        {
+            anim.SetBool("run", player.velocity.magnitude > 0);
+            grounded = true;
+        }
     }
 
 }
