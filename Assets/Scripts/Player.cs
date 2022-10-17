@@ -42,7 +42,7 @@ public class Player : MonoBehaviour
             anim.SetBool("run", player.velocity.magnitude > 0);
             grounded = true;
         }
-        int moveDirection = 15;
+        int moveDirection = 1;
         if (Input.GetKeyDown("q"))
         {
             // Instantiate the fireball at the position and rotation of the player
