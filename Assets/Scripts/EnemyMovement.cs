@@ -6,6 +6,8 @@ public class EnemyMovement : MonoBehaviour
 {
     [SerializeField]
     private float speed;
+    Rigidbody rb;
+    public Animator anim;
 
     [SerializeField]
     private Vector3[] positions;

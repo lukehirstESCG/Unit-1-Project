@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     public GameObject fireball;
 
     void Start()
-        
+
     {
         player = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
@@ -57,6 +57,7 @@ public class Player : MonoBehaviour
 
             //set the position close to the player
             rb.transform.position = new Vector3(transform.position.x, transform.position.y + 2, transform.position.z + 1);
+            Object.Destroy(clone.gameObject, 4.0f);
         }
     }
-    }
+}
