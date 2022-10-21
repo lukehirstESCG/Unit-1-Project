@@ -4,39 +4,34 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    [SerializeField]
-    private float speed;
-    Rigidbody rb;
-    public Animator anim;
+    [SerializeField] float moveSpeed = 2f;
+    Animator anim;
 
-    [SerializeField]
-    private Vector3[] positions;
-
-    private int index;
-
-    // Start is called before the first frame update
+    Rigidbody2D rb;
+     // Start is called before the first frame update
     void Start()
     {
-
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = Vector2.MoveTowards(transform.position, positions[index], Time.deltaTime * speed);
-
-        if (transform.position == positions[index])
+        if(IsFacingRight())
         {
-            if (index == positions.Length - 1)
-            {
-                index = 0;
-            }
-            else
-            {
-                index++;
-            }
-
-
+            rb.velocity = new Vector2(moveSpeed, 0f);
         }
+        else
+        {
+            rb.velocity = new Vector2(-moveSpeed, 0f);
+        }
+    }
+    private bool IsFacingRight()
+    {
+        return transform.localScale.x > Mathf.Epsilon;
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        transform.localScale = new Vector2(-(Mathf.Sign(rb.velocity.x)), transform.localScale.y);
     }
 }
