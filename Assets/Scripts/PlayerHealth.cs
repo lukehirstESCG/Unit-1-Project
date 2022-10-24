@@ -6,9 +6,9 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public int maxHealth = 100;
-    public int health;
-    public Image HealthBar;
+    public float maxHealth = 100;
+    public float health;
+    public Image healthBar;
 
     public GameManagerScript gameManager;
     // Start is called before the first frame update
@@ -20,15 +20,15 @@ public class PlayerHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        HealthBar.fillAmount = Mathf.Clamp(health / maxHealth, 0, 1);
+        healthBar.fillAmount = Mathf.Clamp(health / maxHealth, 0, 1);
     }
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         health -= damage;
         if (health <= 0)     
         {
             PlayerDied();
-            GameObject.Destroy(gameObject);
+            Destroy(gameObject);
         }
 
     }
