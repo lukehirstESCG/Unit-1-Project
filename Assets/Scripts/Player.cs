@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown("space") && grounded)
         {
             grounded = false;
-            player.velocity = new Vector3(player.velocity.x, 10, 0);
+            player.velocity = new Vector3(player.velocity.x, 9, 0);
         }
         else
         {
