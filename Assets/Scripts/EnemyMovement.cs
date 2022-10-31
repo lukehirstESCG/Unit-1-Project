@@ -6,7 +6,6 @@ public class EnemyMovement : MonoBehaviour
 {
     [SerializeField] float moveSpeed = 2f;
     Animator anim;
-
     Rigidbody2D rb;
      // Start is called before the first frame update
     void Start()
