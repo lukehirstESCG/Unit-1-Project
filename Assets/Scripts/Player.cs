@@ -21,26 +21,26 @@ public class Player : MonoBehaviour
     void Update()
     {
         helper.DoRayCollisionCheck();
-        if (Input.GetKey("right"))
+       // if (Input.GetKey("right"))
         {
-            player.velocity = new Vector2(5, 0);
-            helper.FlipObject(false);
+       //     player.velocity = new Vector2(5, 0);
+       //     helper.FlipObject(false);
         }
-        if (Input.GetKey("left"))
+       // if (Input.GetKey("left"))
         {
-            player.velocity = new Vector2(-5, 0);
-            helper.FlipObject(true);
+        //    player.velocity = new Vector2(-5, 0);
+         //   helper.FlipObject(true);
         }
         // Tells the player to jump if on the ground
-        if (Input.GetKeyDown("space") && grounded)
+        // if (Input.GetKeyDown("space") && grounded)
         {
-            grounded = false;
-            player.velocity = new Vector3(player.velocity.x, 9, 0);
+        //    grounded = false;
+         //   player.velocity = new Vector3(player.velocity.x, 9, 0);
         }
-        else
+        // else
         {
-            anim.SetBool("run", player.velocity.magnitude > 0);
-            grounded = true;
+        //    anim.SetBool("run", player.velocity.magnitude > 0);
+          //  grounded = true;
         }
         int moveDirection = 1;
         if (Input.GetKeyDown("q"))
