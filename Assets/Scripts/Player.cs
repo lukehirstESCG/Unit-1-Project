@@ -32,19 +32,16 @@ public class Player : MonoBehaviour
             helper.FlipObject(true);
         }
         // Tells the player to jump if on the ground
-        if (Input.GetButtonDown("space") && grounded)
+        if (Input.GetKeyDown("space") && grounded)
         {
             player.velocity = new Vector3(player.velocity.x, 9, 0);
             grounded = false;
-            if (Input.GetKeyDown("space") && grounded)
-            {
-                grounded = false;
-                player.velocity = new Vector3(player.velocity.x, 9, 0);
+
             }
             else
             {
-                   anim.SetBool("run", player.velocity.magnitude > 0);
-                  grounded = true;
+                anim.SetBool("run", player.velocity.magnitude > 0);
+                grounded = true;
             }
             int moveDirection = 1;
             if (Input.GetKeyDown("q"))
@@ -62,7 +59,5 @@ public class Player : MonoBehaviour
                 //set the position close to the player
                 rb.transform.position = new Vector3(transform.position.x, transform.position.y + 2, transform.position.z + 1);
                 Object.Destroy(clone.gameObject, 4.0f);
-            }
-        }
+            }    }
     }
-}
