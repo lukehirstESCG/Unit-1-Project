@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
         // Tells the player to jump if on the ground
         if (Input.GetKeyDown("space") && grounded)
         {
-            player.velocity = new Vector3(player.velocity.x, 9, 0);
+            player.velocity = new Vector3(player.velocity.x, 8.5f, 0);
             grounded = false;
 
             }
