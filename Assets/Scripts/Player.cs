@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    AudioSource audiosource;
+    public AudioClip BackgroundMusic;
+
     Rigidbody2D player;
     public Animator anim;
     bool grounded;
@@ -16,48 +19,31 @@ public class Player : MonoBehaviour
         player = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         helper = gameObject.AddComponent<HelperScript>();
+        audiosource = GetComponent<AudioSource>();
     }
 
     void Update()
     {
-     //   helper.DoRayCollisionCheck();
-     //   if (Input.GetKey("right"))
-      //  {
-     //       player.velocity = new Vector2(5, 0);
-     //       helper.FlipObject(false);
-     //   }
-    //    if (Input.GetKey("left"))
-      //  {
-     //       player.velocity = new Vector2(-5, 0);
-     //       helper.FlipObject(true);
-      //  }
-        // Tells the player to jump if on the ground
-     //   if (Input.GetKeyDown("space") && grounded)
-     //   {
-      //      player.velocity = new Vector3(player.velocity.x, 8.5f, 0);
-      //      grounded = false;
+        int moveDirection = 1;
+        if (Input.GetKeyDown("q"))
+        {
+            // Instantiate the fireball at the position and rotation of the player
+            GameObject clone;
+            clone = Instantiate(fireball, transform.position, transform.rotation);
 
-         //   }
-           // else
-          //  {
-       //         anim.SetBool("run", player.velocity.magnitude > 0);
-       //         grounded = true;
-           // }
-            int moveDirection = 1;
-            if (Input.GetKeyDown("q"))
-            {
-                // Instantiate the fireball at the position and rotation of the player
-                GameObject clone;
-                clone = Instantiate(fireball, transform.position, transform.rotation);
+            // get the rigidbody component
+            Rigidbody2D rb = clone.GetComponent<Rigidbody2D>();
 
-                // get the rigidbody component
-                Rigidbody2D rb = clone.GetComponent<Rigidbody2D>();
+            // set the velocity
+            rb.velocity = new Vector3(15 * moveDirection, 0, 0);
 
-                // set the velocity
-                rb.velocity = new Vector3(15 * moveDirection, 0, 0);
-
-                //set the position close to the player
-                rb.transform.position = new Vector3(transform.position.x, transform.position.y + 2, transform.position.z + 1);
-                Object.Destroy(clone.gameObject, 4.0f);
-            }    }
+            //set the position close to the player
+            rb.transform.position = new Vector3(transform.position.x, transform.position.y + 2, transform.position.z + 1);
+            Object.Destroy(clone.gameObject, 4.0f);
+        }
+        void Audio()
+        {
+            audiosource.PlayOneShot(BackgroundMusic, 0.8f); //plays the background music at 80% of the normal value
+        }
+    }
     }
